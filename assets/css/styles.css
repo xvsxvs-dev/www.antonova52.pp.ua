@@ -606,56 +606,53 @@ a {
   }
 }
 
-  .site-nav.open {
-    display: flex;
-  }
-
-  .hero {
-    padding: 2.4rem 0 2rem;
-  }
-
-  .hero h1 {
-    font-size: clamp(2rem, 8vw, 2.8rem);
-  }
-
-  .hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .btn {
-    width: 100%;
-  }
-
-  .hero-media img {
-    min-height: 280px;
-  }
-
-  .hero-badge {
-    left: 0.75rem;
-    right: 0.75rem;
-    bottom: 0.75rem;
-  }
-
-  .stats-grid {
-    gap: 0.75rem;
-  }
-
-  .section {
-    padding: 3rem 0;
-  }
-
-  .image-card img {
-    height: 220px;
-  }
-
-  .footer-wrap {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.site-nav.open {
+  display: flex;
 }
 
+.hero {
+  padding: 2.4rem 0 2rem;
+}
 
+.hero h1 {
+  font-size: clamp(2rem, 8vw, 2.8rem);
+}
+
+.hero-actions {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.btn {
+  width: 100%;
+}
+
+.hero-media img {
+  min-height: 280px;
+}
+
+.hero-badge {
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.75rem;
+}
+
+.stats-grid {
+  gap: 0.75rem;
+}
+
+.section {
+  padding: 3rem 0;
+}
+
+.image-card img {
+  height: 220px;
+}
+
+.footer-wrap {
+  flex-direction: column;
+  align-items: flex-start;
+}
 
 details > summary::-webkit-details-marker {
     display: none;
@@ -731,3 +728,14 @@ details.month[open] > summary::before {
     border-top: none;
     background-color: #fafafa;
 }
+
+
+h1,h2{text-align:center}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;border-bottom:1px solid #e5e7eb}
+th{background:#1f4e79;color:#fff}
+td:last-child,th:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.section.income td{background:#dff5e3;font-weight:700;color:#166534}
+.section.expense td{background:#fde2e2;font-weight:700;color:#991b1b}
+.total td{font-weight:700;background:#eef2ff;border-top:2px solid #4f46e5}
+tr:hover td{background:#f8fafc}
