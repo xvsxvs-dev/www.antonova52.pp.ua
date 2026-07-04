@@ -20,3 +20,16 @@ const footer = document.querySelector('.site-footer p');
 if (footer) {
   footer.textContent = `Будинок, де важливі комфорт, порядок та спільна відповідальність. © ${year}`;
 }
+
+document.querySelectorAll('details.year').forEach(yearDetails => {
+    // Слухаємо подію зміни стану (відкриття/закриття)
+    yearDetails.addEventListener('toggle', (event) => {
+        // Якщо секція року щойно ЗАКРИЛАСЯ (open === false)
+        if (!yearDetails.open) {
+            // Знаходимо всі місяці всередині цього року і закриваємо їх
+            yearDetails.querySelectorAll('details.month').forEach(monthDetails => {
+                monthDetails.open = false;
+            });
+        }
+    });
+});
