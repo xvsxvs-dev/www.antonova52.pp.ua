@@ -794,8 +794,7 @@ body.auth-active {
 }
 
 .auth-card p {
-  font-size: 20px;
-  letter-spacing: 1px;
+  font-size: 18px;
   color: #666;
   margin-bottom: 20px;
 }
@@ -806,7 +805,7 @@ body.auth-active {
   margin-top: 8px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  font-size: 20px;
+  font-size: 18px;
   letter-spacing: 1px;
 }
 
@@ -819,7 +818,7 @@ body.auth-active {
   background: var(--accent);
   color: white;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 18px;
   letter-spacing: 1px;
 }
 
