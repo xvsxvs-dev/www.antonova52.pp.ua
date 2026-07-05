@@ -81,8 +81,27 @@ async function verifyCode() {
   }
 }
 
+async function initAuthProtection() {
+  const auth = await checkAuth();
+
+  const content = document.getElementById("appContent");
+  const overlay = document.getElementById("authOverlay");
+
+  if (!auth.loggedIn) {
+    if (content) content.classList.add("auth-locked");
+    if (overlay) overlay.style.display = "block";
+
+    showLoginModal();
+  } else {
+    if (content) content.classList.remove("auth-locked");
+    if (overlay) overlay.style.display = "none";
+  }
+}
+
 // LOGOUT
 async function logout() {
   await fetch("/api/logout");
   location.reload();
 }
+
+setInterval(initAuthProtection, 30000);
