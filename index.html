@@ -17,6 +17,16 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
+    <script>
+    (async () => {
+      const res = await fetch("/api/me");
+      const data = await res.json();
+
+      if (!data.loggedIn) {
+        window.location.href = "/login.html";
+      }
+    })();
+    </script>
     <header class="site-header">
       <div class="container nav-wrap">
         <a class="brand" href="index.html">
