@@ -23,7 +23,7 @@ function showLoginModal() {
       <p id="authSubtitle">Введіть номер телефону</p>
 
       <div id="step1">
-        <input id="phoneInput" placeholder="+380..." maxlength="13" autocomplete="tel"/>
+        <input type="tel" id="phoneInput" placeholder="+380..." maxlength="13"/>
         <button onclick="sendCode()">Отримати код</button>
       </div>
 
