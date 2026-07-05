@@ -740,6 +740,35 @@ td:last-child,th:last-child{text-align:right;white-space:nowrap;font-variant-num
 .total td{font-weight:700;background:#eef2ff;border-top:2px solid #4f46e5}
 tr:hover td{background:#f8fafc}
 
+.auth-locked {
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* overlay завжди зверху */
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 9998;
+}
+
+/* модалка ВИЩЕ за overlay */
+#loginModal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* важливо: не даємо body ламати scroll */
+body.auth-active {
+  overflow: hidden;
+}
+
 .auth-backdrop {
   position: fixed;
   inset: 0;
