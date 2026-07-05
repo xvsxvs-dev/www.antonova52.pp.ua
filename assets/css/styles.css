@@ -739,3 +739,18 @@ td:last-child,th:last-child{text-align:right;white-space:nowrap;font-variant-num
 .section.expense td{background:#fde2e2;font-weight:700;color:#991b1b}
 .total td{font-weight:700;background:#eef2ff;border-top:2px solid #4f46e5}
 tr:hover td{background:#f8fafc}
+
+.auth-locked {
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+}
