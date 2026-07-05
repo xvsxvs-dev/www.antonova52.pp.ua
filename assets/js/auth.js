@@ -60,17 +60,10 @@ async function sendCode() {
   const data = await res.json();
 
   if (data.ok) {
-    document.getElementById("step1").style.display = "none";
-    document.getElementById("step2").style.display = "block";
-
-    document.getElementById("authSubtitle").innerText =
-      "Ми надіслали код у Telegram";
-
-    document.getElementById("authMessage").innerText =
-      "Введіть 6-значний код";
+    document.getElementById("codeBox").style.display = "block";
+    alert("Код відправлено в Telegram");
   } else {
-    document.getElementById("authMessage").innerText =
-      "Цей номер не має доступу";
+    alert("Доступ заборонено");
   }
 }
 
@@ -90,16 +83,9 @@ async function verifyCode() {
   const data = await res.json();
 
   if (data.ok) {
-    document.getElementById("authMessage").innerText =
-      "Успішний вхід...";
-
-    setTimeout(() => {
-      closeLogin();
-      initAuthProtection();
-    }, 500);
+    location.reload();
   } else {
-    document.getElementById("authMessage").innerText =
-      "Невірний код";
+    alert("Невірний код");
   }
 }
 
