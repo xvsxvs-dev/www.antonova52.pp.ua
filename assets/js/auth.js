@@ -19,22 +19,21 @@ function showLoginModal() {
     <div style="
       position:fixed;
       inset:0;
+      background:rgba(0,0,0,0.6);
       display:flex;
       align-items:center;
       justify-content:center;
-      background:rgba(0,0,0,0.6);
       z-index:9999;
     ">
+      <div style="background:white;padding:20px;border-radius:10px;width:300px;">
+        <h3>Login</h3>
 
-      <div style="background:#fff;padding:20px;border-radius:10px;width:300px;">
-        <h3>Вхід</h3>
+        <input id="phoneInput" style="width:100%" />
+        <button onclick="sendCode()" style="width:100%;margin-top:10px;">Send code</button>
 
-        <input id="phoneInput" placeholder="+380..." style="width:100%;padding:8px;" />
-        <button onclick="sendCode()" style="margin-top:10px;width:100%;">Отримати код</button>
-
-        <div id="codeBox" style="display:none;margin-top:15px;">
-          <input id="codeInput" placeholder="Код" style="width:100%;padding:8px;" />
-          <button onclick="verifyCode()" style="margin-top:10px;width:100%;">Увійти</button>
+        <div id="codeBox" style="display:none;margin-top:10px;">
+          <input id="codeInput" style="width:100%" />
+          <button onclick="verifyCode()" style="width:100%;margin-top:10px;">Verify</button>
         </div>
       </div>
     </div>
@@ -92,19 +91,18 @@ async function verifyCode() {
 }
 
 async function initAuthProtection() {
-  const auth = await checkAuth();
-
-  const content = document.getElementById("appContent");
-  const overlay = document.getElementById("authOverlay");
-
   if (!auth.loggedIn) {
-    if (content) content.classList.add("auth-locked");
-    if (overlay) overlay.style.display = "block";
+    content.classList.add("auth-locked");
+    document.body.classList.add("auth-active"); // 🔥 FIX
+
+    overlay.style.display = "block";
 
     showLoginModal();
   } else {
-    if (content) content.classList.remove("auth-locked");
-    if (overlay) overlay.style.display = "none";
+    content.classList.remove("auth-locked");
+    document.body.classList.remove("auth-active"); // 🔥 FIX
+
+    overlay.style.display = "none";
   }
 }
 

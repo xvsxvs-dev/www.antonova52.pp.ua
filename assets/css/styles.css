@@ -746,6 +746,7 @@ tr:hover td{background:#f8fafc}
   user-select: none;
 }
 
+/* overlay завжди зверху */
 .auth-overlay {
   position: fixed;
   inset: 0;
@@ -753,9 +754,17 @@ tr:hover td{background:#f8fafc}
   z-index: 9998;
 }
 
-/* модалка ПОВЕРХ ВСЬОГО */
+/* модалка ВИЩЕ за overlay */
 #loginModal {
   position: fixed;
   inset: 0;
   z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* важливо: не даємо body ламати scroll */
+body.auth-active {
+  overflow: hidden;
 }
