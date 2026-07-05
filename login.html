@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Вхід</h2>
+
+<input id="phone" placeholder="+380..." />
+<button onclick="sendCode()">Отримати код</button>
+
+<script>
+async function sendCode() {
+  const phone = document.getElementById("phone").value;
+
+  const res = await fetch("/api/login", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ phone })
+  });
+
+  const data = await res.json();
+  console.log(data);
+
+  if (data.ok) {
+    // передаємо телефон на наступну сторінку
+    window.location.href = "/verify.html?phone=" + encodeURIComponent(phone);
+  }
+}
+</script>
+
+</body>
+</html>
