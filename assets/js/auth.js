@@ -128,7 +128,12 @@ async function initAuthProtection() {
 // LOGOUT
 async function logout() {
   await fetch("/api/logout");
-  location.reload();
+
+  if (window.location.pathname === "/statute") {
+    window.location.replace("/");
+  } else {
+    location.reload();
+  }
 }
 
 // LOGOUT
