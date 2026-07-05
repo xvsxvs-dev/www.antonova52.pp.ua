@@ -129,7 +129,10 @@ async function initAuthProtection() {
 async function logout() {
   await fetch("/api/logout");
 
-  if (window.location.pathname === "/statute" || window.location.pathname === "/reports") {
+  if (window.location.pathname === "/statute" ||
+    window.location.pathname === "/reports" ||
+    window.location.pathname === "/protocols-board" ||
+    window.location.pathname === "/protocols-general") {
     window.location.replace("/");
   } else {
     location.reload();
@@ -140,7 +143,10 @@ async function logout() {
 async function cancelLogin() {
   closeLogin();
   
-  if (window.location.pathname === "/statute" || window.location.pathname === "/reports") {
+  if (window.location.pathname === "/statute" ||
+    window.location.pathname === "/reports" ||
+    window.location.pathname === "/protocols-board" ||
+    window.location.pathname === "/protocols-general") {
     window.location.replace("/");
   }
 }
