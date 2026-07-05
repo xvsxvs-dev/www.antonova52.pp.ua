@@ -357,11 +357,13 @@
         const overlay = document.getElementById("authOverlay");
 
         if (!auth.loggedIn) {
+          btn.innerHTML = '<a onclick="showLoginModal()">Вхід</a>';
           content.classList.add("auth-locked");
           overlay.style.display = "block";
 
           showLoginModal();
         } else {
+          btn.innerHTML = '<a onclick="logout()">Вихід</a>';
           content.classList.remove("auth-locked");
           overlay.style.display = "none";
         }
