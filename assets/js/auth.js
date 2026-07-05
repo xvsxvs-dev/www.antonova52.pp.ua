@@ -28,7 +28,7 @@ function showLoginModal() {
       </div>
 
       <div id="step2" style="display:none;">
-        <input id="codeInput" placeholder="Код з Telegram" />
+        <input id="codeInput" inputmode="numeric" placeholder="Код з Telegram" />
         <button onclick="verifyCode()">Увійти</button>
       </div>
 
