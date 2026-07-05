@@ -33,7 +33,7 @@ function showLoginModal() {
       </div>
 
       <div>
-        <button onclick="cancelLogin()">Не хочу</button>
+        <button class="cancel" onclick="cancelLogin()">Не хочу</button>
       </div>
 
       <p id="authMessage"></p>
