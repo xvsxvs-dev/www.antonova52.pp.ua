@@ -821,6 +821,14 @@ body.auth-active {
   background: #1f56c2;
 }
 
+.auth-card .cancel button {
+  background: #7e7e7e;
+}
+
+.auth-card .cancel button:hover {
+  background: #5c5c5c;
+}
+
 #authMessage {
   margin-top: 10px;
   font-size: 12px;
