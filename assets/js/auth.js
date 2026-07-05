@@ -33,7 +33,7 @@ function showLoginModal() {
       </div>
 
       <div>
-        <button onclick="closeLogin()">Не хочу</button>
+        <button onclick="cancelLogin()">Не хочу</button>
       </div>
 
       <p id="authMessage"></p>
@@ -129,6 +129,15 @@ async function initAuthProtection() {
 async function logout() {
   await fetch("/api/logout");
   location.reload();
+}
+
+// LOGOUT
+async function cancelLogin() {
+  logout()
+  
+  if (window.location.pathname === "/statute.html") {
+    window.location.replace("/");
+  }
 }
 
 async function updateAuthButton(protectedPage = false) {
