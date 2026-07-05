@@ -790,12 +790,14 @@ body.auth-active {
 
 .auth-card h2 {
   margin: 0 0 6px;
+  letter-spacing: 1px;
 }
 
 .auth-card p {
-  font-size: 13px;
+  font-size: 20px;
+  letter-spacing: 1px;
   color: #666;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 }
 
 .auth-card input {
@@ -804,6 +806,8 @@ body.auth-active {
   margin-top: 8px;
   border: 1px solid #ddd;
   border-radius: 8px;
+  font-size: 20px;
+  letter-spacing: 1px;
 }
 
 .auth-card button {
@@ -815,6 +819,8 @@ body.auth-active {
   background: var(--accent);
   color: white;
   cursor: pointer;
+  font-size: 20px;
+  letter-spacing: 1px;
 }
 
 .auth-card button:hover {
@@ -831,6 +837,6 @@ body.auth-active {
 
 #authMessage {
   margin-top: 10px;
-  font-size: 12px;
-  color: var(--accent);
+  font-size: 18px;
+  color: #ff0000;
 }
