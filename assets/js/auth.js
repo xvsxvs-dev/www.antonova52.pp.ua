@@ -133,7 +133,7 @@ async function logout() {
 
 // LOGOUT
 async function cancelLogin() {
-  logout()
+  closeLogin();
   
   if (window.location.pathname === "/statute.html") {
     window.location.replace("/");
