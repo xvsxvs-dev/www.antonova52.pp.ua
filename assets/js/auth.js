@@ -134,6 +134,10 @@ async function logout() {
   } else {
     location.reload();
   }
+
+
+
+  
 }
 
 // LOGOUT
