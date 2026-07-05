@@ -94,8 +94,10 @@ async function verifyCode() {
       "Успішний вхід...";
 
     setTimeout(() => {
+      // closeLogin();
+      // initAuthProtection();
       closeLogin();
-      initAuthProtection();
+      location.reload();
     }, 500);
   } else {
     document.getElementById("authMessage").innerText =
@@ -123,6 +125,26 @@ async function initAuthProtection() {
 async function logout() {
   await fetch("/api/logout");
   location.reload();
+}
+
+async function updateAuthButton(protectedPage = false) {
+
+    const auth = await checkAuth();
+
+    const btn = document.getElementById("authButton");
+    if (!btn) return;
+
+    if (auth.loggedIn) {
+        btn.innerHTML = '<a href="#" onclick="logout();return false;">Вихід</a>';
+    } else {
+
+        if (protectedPage) {
+            btn.innerHTML = "";
+        } else {
+            btn.innerHTML = '<a href="#" onclick="showLoginModal();return false;">Вхід</a>';
+        }
+
+    }
 }
 
 setInterval(initAuthProtection, 30000);
