@@ -135,7 +135,7 @@ async function logout() {
 async function cancelLogin() {
   closeLogin();
   
-  if (window.location.pathname === "/statute.html") {
+  if (window.location.pathname === "/statute") {
     window.location.replace("/");
   }
 }
