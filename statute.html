@@ -341,5 +341,15 @@
     </footer>
 
     <script src="assets/js/script.js"></script>
+    <script>
+      (async () => {
+        const res = await fetch("/api/me");
+        const data = await res.json();
+
+        if (!data.loggedIn) {
+          window.location.href = "/index.html";
+        }
+      })();
+    </script>
   </body>
 </html>

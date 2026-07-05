@@ -17,16 +17,6 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
-    <script>
-    (async () => {
-      const res = await fetch("/api/me");
-      const data = await res.json();
-
-      if (!data.loggedIn) {
-        window.location.href = "/login.html";
-      }
-    })();
-    </script>
     <header class="site-header">
       <div class="container nav-wrap">
         <a class="brand" href="index.html">
@@ -52,6 +42,7 @@
           <a href="reports.html">Звіти</a>
           <a href="statute.html">Статут</a>
           <a href="contacts.html">Контакти</a>
+          <div id="authButton"><a onclick="showLoginModal()">Вхід</a></div>          
         </nav>
       </div>
     </header>
@@ -202,6 +193,20 @@
       </div>
     </footer>
 
+    <script src="assets/js/auth.js"></script>
     <script src="assets/js/script.js"></script>
+    <script>
+      (async () => {
+        const auth = await checkAuth();
+
+        const btn = document.getElementById("authButton");
+
+        if (auth.loggedIn) {
+          btn.innerHTML = '<a onclick="logout()">Вихід</a>';
+        } else {
+          btn.innerHTML = '<a onclick="showLoginModal()">Вхід</a>';
+        }
+      })();
+    </script>
   </body>
 </html>
