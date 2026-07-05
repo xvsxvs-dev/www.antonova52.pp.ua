@@ -812,13 +812,13 @@ body.auth-active {
   padding: 10px;
   border: none;
   border-radius: 8px;
-  background: #2d6cdf;
+  background: var(--accent);
   color: white;
   cursor: pointer;
 }
 
 .auth-card button:hover {
-  background: #1f56c2;
+  background: #27696f;
 }
 
 #cancelBtn {
