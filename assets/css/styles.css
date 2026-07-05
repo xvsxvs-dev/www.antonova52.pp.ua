@@ -744,13 +744,18 @@ tr:hover td{background:#f8fafc}
   filter: blur(8px);
   pointer-events: none;
   user-select: none;
-  height: 100vh;
-  overflow: hidden;
 }
 
 .auth-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.6);
+  z-index: 9998;
+}
+
+/* модалка ПОВЕРХ ВСЬОГО */
+#loginModal {
+  position: fixed;
+  inset: 0;
   z-index: 9999;
 }

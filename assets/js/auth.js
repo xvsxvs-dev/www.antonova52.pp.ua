@@ -8,11 +8,23 @@ async function checkAuth() {
 
 // LOGIN MODAL
 function showLoginModal() {
+  if (document.getElementById("loginModal")) return;
+
+  const container = document.getElementById("loginModalContainer");
+
   const modal = document.createElement("div");
   modal.id = "loginModal";
+
   modal.innerHTML = `
-    <div style="position:fixed;top:0;left:0;right:0;bottom:0;
-      background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;">
+    <div style="
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(0,0,0,0.6);
+      z-index:9999;
+    ">
 
       <div style="background:#fff;padding:20px;border-radius:10px;width:300px;">
         <h3>Вхід</h3>
@@ -24,13 +36,11 @@ function showLoginModal() {
           <input id="codeInput" placeholder="Код" style="width:100%;padding:8px;" />
           <button onclick="verifyCode()" style="margin-top:10px;width:100%;">Увійти</button>
         </div>
-
-        <button onclick="closeLogin()" style="margin-top:10px;">Закрити</button>
       </div>
     </div>
   `;
 
-  document.body.appendChild(modal);
+  container.appendChild(modal);
 }
 
 // CLOSE MODAL
