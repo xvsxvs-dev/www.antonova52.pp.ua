@@ -16,27 +16,26 @@ function showLoginModal() {
   modal.id = "loginModal";
 
   modal.innerHTML = `
-    <div style="
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.6);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:9999;
-    ">
-      <div style="background:white;padding:20px;border-radius:10px;width:300px;">
-        <h3>Login</h3>
+  <div class="auth-backdrop">
+    <div class="auth-card">
 
-        <input id="phoneInput" style="width:100%" />
-        <button onclick="sendCode()" style="width:100%;margin-top:10px;">Send code</button>
+      <h2>Вхід в систему</h2>
+      <p id="authSubtitle">Введіть номер телефону</p>
 
-        <div id="codeBox" style="display:none;margin-top:10px;">
-          <input id="codeInput" style="width:100%" />
-          <button onclick="verifyCode()" style="width:100%;margin-top:10px;">Verify</button>
-        </div>
+      <div id="step1">
+        <input id="phoneInput" placeholder="+380..." />
+        <button onclick="sendCode()">Отримати код</button>
       </div>
+
+      <div id="step2" style="display:none;">
+        <input id="codeInput" placeholder="Код з Telegram" />
+        <button onclick="verifyCode()">Увійти</button>
+      </div>
+
+      <p id="authMessage"></p>
+
     </div>
+  </div>
   `;
 
   container.appendChild(modal);
@@ -61,10 +60,17 @@ async function sendCode() {
   const data = await res.json();
 
   if (data.ok) {
-    document.getElementById("codeBox").style.display = "block";
-    alert("Код відправлено в Telegram");
+    document.getElementById("step1").style.display = "none";
+    document.getElementById("step2").style.display = "block";
+
+    document.getElementById("authSubtitle").innerText =
+      "Ми надіслали код у Telegram";
+
+    document.getElementById("authMessage").innerText =
+      "Введіть 6-значний код";
   } else {
-    alert("Доступ заборонено");
+    document.getElementById("authMessage").innerText =
+      "Цей номер не має доступу";
   }
 }
 
@@ -84,9 +90,16 @@ async function verifyCode() {
   const data = await res.json();
 
   if (data.ok) {
-    location.reload();
+    document.getElementById("authMessage").innerText =
+      "Успішний вхід...";
+
+    setTimeout(() => {
+      closeLogin();
+      initAuthProtection();
+    }, 500);
   } else {
-    alert("Невірний код");
+    document.getElementById("authMessage").innerText =
+      "Невірний код";
   }
 }
 
