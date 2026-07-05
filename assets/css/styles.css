@@ -821,11 +821,11 @@ body.auth-active {
   background: #1f56c2;
 }
 
-.auth-card .cancel button {
+#cancelBtn {
   background: #7e7e7e;
 }
 
-.auth-card .cancel button:hover {
+#cancelBtn:hover {
   background: #5c5c5c;
 }
 
