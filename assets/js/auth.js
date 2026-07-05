@@ -32,6 +32,10 @@ function showLoginModal() {
         <button onclick="verifyCode()">Увійти</button>
       </div>
 
+      <div>
+        <button onclick="closeLogin()">Не хочу</button>
+      </div>
+
       <p id="authMessage"></p>
 
     </div>
