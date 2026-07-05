@@ -125,4 +125,16 @@ async function logout() {
   location.reload();
 }
 
+(async () => {
+  const auth = await checkAuth();
+
+  const btn = document.getElementById("authButton");
+
+  if (auth.loggedIn) {
+    btn.innerHTML = '<a onclick="logout()">Вихід</a>';
+  } else {
+    btn.innerHTML = '<a onclick="showLoginModal()">Вхід</a>';
+  }
+})();
+
 setInterval(initAuthProtection, 30000);
