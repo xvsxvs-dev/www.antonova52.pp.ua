@@ -197,18 +197,5 @@
 
     <script src="assets/js/auth.js"></script>
     <script src="assets/js/script.js"></script>
-    <script>
-      (async () => {
-        const auth = await checkAuth();
-
-        const btn = document.getElementById("authButton");
-
-        if (auth.loggedIn) {
-          btn.innerHTML = '<a onclick="logout()">Вихід</a>';
-        } else {
-          btn.innerHTML = '<a onclick="showLoginModal()">Вхід</a>';
-        }
-      })();
-    </script>
   </body>
 </html>
