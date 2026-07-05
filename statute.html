@@ -350,22 +350,6 @@
     <script src="/assets/js/auth.js"></script>
     <script src="assets/js/script.js"></script>
     <script>
-      // (async () => {
-      //   const auth = await checkAuth();
-
-      //   const content = document.getElementById("appContent");
-      //   const overlay = document.getElementById("authOverlay");
-
-      //   if (!auth.loggedIn) {
-      //     content.classList.add("auth-locked");
-      //     overlay.style.display = "block";
-
-      //     showLoginModal();
-      //   } else {
-      //     content.classList.remove("auth-locked");
-      //     overlay.style.display = "none";
-      //   }
-      // })();
       async function protectPage(contentId, overlayId) {
         const auth = await checkAuth();
 
