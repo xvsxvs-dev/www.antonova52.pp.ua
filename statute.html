@@ -8,6 +8,8 @@
       name="description"
       content="Типовий статут ОСББ Антонова 52 'Крила' з основними положеннями про правління, фінанси та діяльність спільноти."
     />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -350,30 +352,8 @@
     <script src="/assets/js/auth.js?v=1.0.0"></script>
     <script src="assets/js/script.js?v=1.0.0"></script>
     <script>
-      async function protectPage(contentId, overlayId) {
-        const auth = await checkAuth();
-
-        const content = document.getElementById(contentId);
-        const overlay = document.getElementById(overlayId);
-
-        if (!content || !overlay)
-            return;
-
-        if (!auth.loggedIn) {
-          content.classList.add("auth-locked");
-          overlay.style.display = "block";
-
-          showLoginModal();
-        } else {
-            content.classList.remove("auth-locked");
-            overlay.style.display = "none";
-        }
-
-        await updateAuthButton(true);
-      }
-
       document.addEventListener("DOMContentLoaded", () => {
-        protectPage("appContent", "authOverlay");
+        initProtectedPage("appContent", "authOverlay");
       });
     </script>
   </body>

@@ -8,6 +8,8 @@
       name="description"
       content="ОСББ Антонова 52 — сучасне управління будинком, комфорт, безпека та відкритий діалог з мешканцями."
     />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -197,25 +199,10 @@
 
     <script src="assets/js/auth.js?v=1.0.0"></script>
     <script src="assets/js/script.js?v=1.0.0"></script>
-
-
-
-
     <script>
-      // (async () => {
-      //   const auth = await checkAuth();
-
-      //   const btn = document.getElementById("authButton");
-
-      //   if (auth.loggedIn) {
-      //     btn.innerHTML = '<a onclick="logout()">Вихід</a>';
-      //   } else {
-      //     btn.innerHTML = '<a onclick="showLoginModal()">Вхід</a>';
-      //   }
-      // })();
       document.addEventListener("DOMContentLoaded", () => {
-        updateAuthButton(false);
-      });
+        initPublicPage();
+      });      
     </script>
   </body>
 </html>

@@ -1,9 +1,17 @@
-let currentPhone = null;
+const Auth = {
+  loggedIn: false,
+  protectedPage: false,
+  content: null,
+  overlay: null,
+  phone: null
+};
 
-// перевірка сесії
+// session verification
 async function checkAuth() {
   const res = await fetch("/api/me");
-  return await res.json();
+  const data = await res.json();
+
+  Auth.loggedIn = data.loggedIn;
 }
 
 // LOGIN MODAL
@@ -53,7 +61,7 @@ function closeLogin() {
 // SEND CODE
 async function sendCode() {
   const phone = document.getElementById("phoneInput").value;
-  currentPhone = phone;
+  Auth.phone = phone;
 
   const res = await fetch("/api/login", {
     method: "POST",
@@ -80,95 +88,113 @@ async function sendCode() {
 
 // VERIFY CODE
 async function verifyCode() {
-  const code = document.getElementById("codeInput").value;
+  const code = document.getElementById("codeInput").value.trim();
 
   const res = await fetch("/api/verify", {
     method: "POST",
-    headers: {"Content-Type": "application/json"},
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify({
-      phone: currentPhone,
+      phone: Auth.phone,
       code
     })
   });
 
   const data = await res.json();
 
-  if (data.ok) {
-    document.getElementById("authMessage").innerText =
-      "Успішний вхід...";
-
-    setTimeout(() => {
-      // closeLogin();
-      // initAuthProtection();
-      closeLogin();
-      location.reload();
-    }, 500);
-  } else {
-    document.getElementById("authMessage").innerText =
-      "Невірний код";
+  if (!data.ok) {
+    document.getElementById("authMessage").innerText = "Невірний код";
+    return;
   }
-}
 
-async function initAuthProtection() {
-  if (!auth.loggedIn) {
-    content.classList.add("auth-locked");
-    document.body.classList.add("auth-active"); // 🔥 FIX
+  document.getElementById("authMessage").innerText = "Успішний вхід...";
 
-    overlay.style.display = "block";
+  setTimeout(async () => {
+    // close modal window
+    closeLogin();
 
-    showLoginModal();
-  } else {
-    content.classList.remove("auth-locked");
-    document.body.classList.remove("auth-active"); // 🔥 FIX
+    // update Auth state
+    await checkAuth();
 
-    overlay.style.display = "none";
-  }
+    // update UI
+    refreshUI();
+  }, 500);
 }
 
 // LOGOUT
 async function logout() {
   await fetch("/api/logout");
 
-  if (window.location.pathname === "/statute" ||
-    window.location.pathname === "/reports" ||
-    window.location.pathname === "/protocols-board" ||
-    window.location.pathname === "/protocols-general") {
-    window.location.replace("/");
-  } else {
-    location.reload();
-  }
+  await checkAuth();
+
+  refreshUI();
 }
 
-// LOGOUT
+// cancel login
 async function cancelLogin() {
   closeLogin();
   
-  if (window.location.pathname === "/statute" ||
-    window.location.pathname === "/reports" ||
-    window.location.pathname === "/protocols-board" ||
-    window.location.pathname === "/protocols-general") {
+  const redirectPattern = /^\/(statute|reports|protocols-board|protocols-general)(\.html|\/|$)/;
+
+  if (redirectPattern.test(window.location.pathname)) {
     window.location.replace("/");
   }
 }
 
-async function updateAuthButton(protectedPage = false) {
+async function initProtectedPage(contentId, overlayId) {
+  Auth.protectedPage = true;
+  Auth.content = document.getElementById(contentId);
+  Auth.overlay = document.getElementById(overlayId);
 
-    const auth = await checkAuth();
+  await checkAuth();
 
-    const btn = document.getElementById("authButton");
-    if (!btn) return;
-
-    if (auth.loggedIn) {
-        btn.innerHTML = '<a href="#" onclick="logout();return false;">Вихід</a>';
-    } else {
-
-        if (protectedPage) {
-            btn.innerHTML = "";
-        } else {
-            btn.innerHTML = '<a href="#" onclick="showLoginModal();return false;">Вхід</a>';
-        }
-
-    }
+  refreshUI();
 }
 
-setInterval(initAuthProtection, 30000);
+async function initPublicPage() {
+  Auth.protectedPage = false;
+
+  await checkAuth();
+
+  refreshUI();
+}
+
+function refreshUI() {
+  updateButton();
+
+  if (!Auth.protectedPage)
+    return;
+
+  if (Auth.loggedIn) {
+    Auth.content.classList.remove("auth-locked");
+    Auth.overlay.style.display = "none";
+
+    closeLogin();
+  }
+  else {
+    Auth.content.classList.add("auth-locked");
+    Auth.overlay.style.display = "block";
+
+    showLoginModal();
+  }
+}
+
+function updateButton() {
+  const btn = document.getElementById("authButton");
+
+  if (!btn)
+    return;
+
+  if (Auth.loggedIn) {
+    btn.innerHTML = '<a href="#" onclick="logout();return false;">Вихід</a>';
+  }
+  else {
+    if (Auth.protectedPage) {
+      btn.innerHTML = "";
+    }
+    else {
+      btn.innerHTML = '<a href="#" onclick="showLoginModal();return false;">Вхід</a>';
+    }
+  }
+}
