@@ -752,6 +752,7 @@ tr:hover td{background:#f8fafc}
   inset: 0;
   background: rgba(0,0,0,0.6);
   z-index: 9998;
+  display: none;
 }
 
 /* модалка ВИЩЕ за overlay */
