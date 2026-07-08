@@ -840,3 +840,12 @@ body.auth-active {
   font-size: 18px;
   color: #ff0000;
 }
+
+.card a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
